@@ -4,6 +4,8 @@ It is a web port of Microsoft Calculator App engine, emulating the same UI on fr
 
 This project exists to test the scope of porting Desktop utilities, written in native code, to Web so as to run everywhere #WebIsTheFuture.
 
+Try it here https://mcalculator.herokuapp.com/
+
 ![screenshot](./engine/docs/Images/calc-screenshot.png)
 
 # Core
