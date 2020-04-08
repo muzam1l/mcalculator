@@ -4,7 +4,7 @@ It is a web port of Microsoft Calculator App engine, emulating the same UI on fr
 
 This project exists to test the scope of porting Desktop utilities, written in native code, to Web so as to run everywhere #WebIsTheFuture.
 
-![screenshot](./engine/docs/Images/CalculatorScreenshot.png)
+![screenshot](./engine/docs/Images/calc-screenshot.png)
 
 # Core
 Engine is written entirely in cpp with modern cpp17 and legacy code mixed with windows specific tools. However modifying it to make it work with other tools like gcc or clang   was not so diffcult thanks to efforts in last year by contributers of calculator on github. After adding my thin cpp View layer to interact with it, i compiled the [engine](./engine) to WebAssembly using [Emscripten](https://emscripten.org/) (which behaves like clang), adding my hooks here and there to make it interact with javascript in browser enviroment. So i was successful in getting engine.wasm to run locally in browser.
@@ -14,7 +14,7 @@ UI layer was written in plane HTML, CSS, and vanilla Javascript to make it and w
 
 UI is very responsive and fluent and loads super fast even on slower connections and low-end mobile devices. Once loaded for first time, sebsequent loads are even faster thanks to caching of of files like wasm assets. Offline mode and making it native app is also planned for near future.
 
-![responsive example](./engine/docs/Images/VisualStates/Standard1.gif)
+![responsive example](./engine/docs/Images/calc-resposive.gif)
 
 # Current development
 As of now only Standard mode is available in this build 😜(#reduces to more of a POC 😊). But i am working on Scientific Mode which will be pushed in few days 🤗. Offline mode and Native app is also soon. Further development is subjected to interests and contributions of you guys (whoever reads this or just for myself 🥴😭)
@@ -24,7 +24,8 @@ As of now only Standard mode is available in this build 😜(#reduces to more of
 * Whole Standard Mode (#i know this isn't much, so using 'whole' to exaggerate) to meet basic calculator requirements.
 * History panel, with NO copy paste as of now (#on both web and phones 🤔).
 * Memory list panel, WITH individual memory item change (MC, M+, M- on each list item, hover or tap list to show these buttons)
-* 
+
+![memory-screenshot](./engine/docs/Images/calc-memory.gif)
 
 # Contributing
 There ain't even any tests, so make it or break it, i just need your contri (and again, if i am only one reading, contri on me only 😣)
