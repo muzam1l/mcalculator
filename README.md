@@ -14,7 +14,9 @@ Engine is written entirely in cpp with modern cpp17 and legacy code mixed with w
 # UI
 UI layer was written in plane HTML, CSS, and vanilla Javascript to make it and whole app tiny sized to load and run fast. All the front-end tasks, like capturing Keyboard and button clicks and maping these to commands to be sent to engine are maintained at this layer. This layer then sends these commands to engine which does all the calcualtion and most of the error and state handling.
 
-UI is very responsive and fluent and loads super fast even on slower connections and low-end mobile devices. Once loaded for first time, sebsequent loads are even faster thanks to caching of of files like wasm assets. Offline mode and making it native app is also planned for near future.
+UI is very responsive and fluent and loads super fast even on slower connections and low-end mobile devices. Once loaded for first time, sebsequent loads are even faster thanks to caching of of files like wasm assets. 
+
+App now can be installed like native app and is available offline, thanks to @NWylynko. On mobile devices use "Add to homescreen" and on desktop use plus icon in adress bar to install (new link).
 
 ![responsive example](./engine/docs/Images/calc-resposive.gif)
 
