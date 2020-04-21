@@ -8,7 +8,7 @@
     <link rel="icon" href="favicon.ico" />
     <title>calc</title>
   </head>
-  
+
   <body>
     <div class="splash">
       <div class="spinner"></div>
@@ -156,5 +156,20 @@
     </div>
     <link rel="stylesheet" href="fonts.css" />
     <link rel="stylesheet" href="standard.css" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/service-worker.js")
+          .then(function (registration) {
+            console.log(
+              "Registration successful, scope is:",
+              registration.scope
+            );
+          })
+          .catch(function (error) {
+            console.log("Service worker registration failed, error:", error);
+          });
+      }
+    </script>
   </body>
 </html>
