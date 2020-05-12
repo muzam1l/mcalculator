@@ -14,7 +14,7 @@ void StandardModel::send(int intCOMMAND)
     auto COMMAND = static_cast<Command>(intCOMMAND);
     if (COMMAND == Command::CommandMPLUS || COMMAND == Command::CommandMMINUS ||
         COMMAND == Command::CommandSTORE || COMMAND == Command::CommandRECALL ||
-        COMMAND == Command::CommandCLEAR) {
+        COMMAND == Command::CommandMCLEAR) {
       switch (COMMAND) {
         case Command::CommandMPLUS:
           m_standardCalculatorManager.MemorizedNumberAdd(0);

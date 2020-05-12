@@ -1,6 +1,10 @@
 function initialise() {
     window.setPrimaryDisplay = function setPrrimaryDisplayToBeCalledFromEngineWithDisplayString(displayStr) {
         displayStr = displayStr.replace("e", "e<br>");
+        //fix for Ove<br>flow
+        if (!displayStr === 'Overflow') /*TODO add some other cases*/ {
+            displayStr = displayStr.replace("e", "e<br>");
+        }
         document.querySelector('#display > #primary').innerHTML = displayStr;
     }
     window.setExpressionDisplay = function setExpresionDisplayOverThePrimaryOne(displayStr) {

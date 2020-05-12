@@ -12,6 +12,7 @@ add_subdirectory(CalcManager)
 
 add_subdirectory(CalcModel)
 
-add_executable(engine wrapper.cpp)
+#add_executable(engine wrapper.cpp)
+add_library(Engine STATIC wrapper.cpp)
 
-target_link_libraries(engine CalcManager CalcModel)
+target_link_libraries(Engine CalcManager CalcModel)

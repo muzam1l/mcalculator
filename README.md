@@ -34,6 +34,26 @@ As of now only Standard mode is available in this build 😜(#reduces to more of
 # Contributing
 There ain't even any tests, so make it or break it, i just need your contri (and again, if i am only one reading, contri on me only 😣)
 
+# Build 🤷‍♂️
+You'll need Emscripten to build. 
+1. [Download and install](https://emscripten.org/docs/getting_started/downloads.html#sdk-download-and-install) emscripten.
+
+Then you may have emscripten installed on some path say /path/to/emscripten (for example my path to emcc looks like this `/home/muzam/bin/emsdk/upstream/emscripten/emcc` )
+
+2. Then cd to engine/ (or copy engine/ to different location to play around) and enter following in terminal
+
+    `</path/to/emscripten>/emcmake cmake .`
+
+    `</path/to/emscripten>/emmake make`
+
+    `</path/to/emscripten>/emcc -02 libEngine.a CalcManager/libCalcManager.a CalcModel/libCalcModel.a  -o engine.js`
+
+First two lines genrates cmake files and lib.a files respectively in their respective folders.
+All this behavior is controlled in respective CmakeFiles.txt
+
+Third one generates engine.js and engine.wasm in project root (-o flag), These files can be copied directly and pasted in public/js of server (which is not automated yet 😬)
+
+
 # Reporting Issues
 if you are not using this on daily basis, dont report anything, contribute instaed 😪.
 
