@@ -1,9 +1,9 @@
 {
     "lang": "English",
     "name": "MCalculator",
-    "scope": "/",
+    "scope": ".",
     "display": "standalone",
-    "start_url": "https://mcalculator.herokuapp.com/",
+    "start_url": "https://muzam1l.github.io/mcalculator/",
     "short_name": "calc",
     "theme_color": "transparent",
     "description": "",
@@ -108,6 +108,6 @@
             "type": "image/png"
         }
     ],
-    "url": "https://mcalculator.herokuapp.com",
+    "url": "https://muzam1l.github.io/mcalculator/",
     "screenshots": []
 }

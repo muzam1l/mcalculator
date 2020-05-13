@@ -1,16 +1,16 @@
 const filesToCache = [
-  '/',
-  'index.html',
-  'assets/CalcMDL2.ttf',
-  'js/engine.js',
-  'js/engine.wasm',
-  'js/script.js',
-  'fonts.css',
-  'splash.css',
-  'standard.css',
+  '/mcalculator/',
+  '/mcalculator/index.html',
+  '/mcalculator/assets/CalcMDL2.ttf',
+  '/mcalculator/js/engine.js',
+  '/mcalculator/js/engine.wasm',
+  '/mcalculator/js/script.js',
+  '/mcalculator/fonts.css',
+  '/mcalculator/splash.css',
+  '/mcalculator/standard.css',
 ];
 
-const staticCacheName = 'pages-cache-v1';
+const staticCacheName = 'pages-cache-v1.1';
 
 self.addEventListener('install', event => {
   console.log('Attempting to install service worker and cache static assets');

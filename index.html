@@ -159,7 +159,9 @@
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker
-          .register("/service-worker.js")
+          .register("/mcalculator/service-worker.js", {
+            scope: "/mcalculator/",
+          })
           .then(function (registration) {
             console.log(
               "Registration successful, scope is:",
