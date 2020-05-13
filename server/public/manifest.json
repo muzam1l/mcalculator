@@ -1,7 +1,7 @@
 {
     "lang": "English",
     "name": "MCalculator",
-    "scope": "/",
+    "scope": ".",
     "display": "standalone",
     "start_url": "https://mcalculator.herokuapp.com/",
     "short_name": "calc",
