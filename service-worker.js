@@ -1,3 +1,4 @@
+var CACHE = 'cache-and-update';
 const filesToCache = [
   '/mcalculator/',
   '/mcalculator/index.html',
@@ -10,45 +11,58 @@ const filesToCache = [
   '/mcalculator/standard.css',
 ];
 
-const staticCacheName = 'pages-cache-v1.1';
+self.addEventListener('install', function (evt) {
+  console.log('The service worker is being installed.');
 
-self.addEventListener('install', event => {
-  console.log('Attempting to install service worker and cache static assets');
+  evt.waitUntil(precache());
+});
+self.addEventListener('fetch', function (evt) {
+  evt.respondWith(fromCache(evt.request));
+
+  evt.waitUntil(update(evt.request));
+});
+self.addEventListener('activate', function (event) {
+  console.log('The service worker is activating and removing old Caches')
   event.waitUntil(
-    caches.open(staticCacheName)
-      .then(cache => {
-        return cache.addAll(filesToCache);
-      })
+    caches.keys().then(function (cacheNames) {
+      return Promise.all(
+        cacheNames.filter(function (cacheName) {
+          // Return true if you want to remove this cache,
+          // but remember that caches are shared across
+          // the whole origin
+          if (cacheName !== CACHE) {
+            return true;
+          }
+        }).map(function (cacheName) {
+          return caches.delete(cacheName);
+        })
+      );
+    }).then(self.clients.claim())
   );
 });
 
-self.addEventListener('activate', event => {
-  console.log('Service worker activating...');
-});
-
-self.addEventListener('fetch', event => {
-  console.log('Fetch event for ', event.request.url);
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        if (response) {
-          console.log('Found ', event.request.url, ' in cache');
-          return response;
-        }
-        console.log('Network request for ', event.request.url);
-        return fetch(event.request)
-          .then(response => {
-            // TODO 5 - Respond with custom 404 page
-            return caches.open(staticCacheName).then(cache => {
-              cache.put(event.request.url, response.clone());
-              return response;
-            });
-          });
-
-      }).catch(error => {
-
-        // TODO 6 - Respond with custom offline page
-
-      })
-  );
-});
+function fromCache(request) {
+  return caches.open(CACHE).then(function (cache) {
+    return cache.match(request).then(function (matching) {
+      return matching || Promise.reject('no-match in cache for', request.url);
+    });
+  });
+}
+function precache() {
+  return caches.open(CACHE).then(function (cache) {
+    return cache.addAll(filesToCache);
+  });
+}
+function update(request) {
+  return caches.open(CACHE).then(function (cache) {
+    return fetch(request).then(function (response) {
+      if (!response.ok) {
+        return
+      }
+      return cache.put(request, response);
+    }).catch(error => {
+      //no problem if can't update
+      return;
+    })
+  });
+}
