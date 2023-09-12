@@ -1,63 +1,55 @@
-# mcalculator
+# MCalculator
 
-It is a web port of Microsoft Calculator App engine, emulating the same UI on frontend. 
+It is a port of the Microsoft Calculator App engine to the web, emulating the same UI on the front-end. 
 
-This project exists to test the scope of porting Desktop utilities, written in native code, to Web so as to run everywhere #WebIsTheFuture.
+This project exists to test the scope of porting Desktop utilities, written in native code, to the web so as to run everywhere #WebIsTheFuture.
 
-Try it here
-https://muzam1l.github.io/mcalculator
+Try it [here](https://muzam1l.github.io/mcalculator)
 
 ![screenshot](./engine/docs/Images/calc-screenshot.png)
 
-# Core
-Engine is written entirely in cpp with modern cpp17 and legacy code mixed with windows specific tools. However modifying it to make it work with other tools like gcc or clang   was not so diffcult thanks to efforts in last year by contributers of calculator on github. After adding my thin cpp View layer to interact with it, i compiled the [engine](./engine) to WebAssembly using [Emscripten](https://emscripten.org/) (which behaves like clang), adding my hooks here and there to make it interact with javascript in browser enviroment. So i was successful in getting engine.wasm to run locally in browser.
+# [Engine](./engine)
 
-# UI
-UI layer was written in plane HTML, CSS, and vanilla Javascript to make it and whole app tiny sized to load and run fast. All the front-end tasks, like capturing Keyboard and button clicks and maping these to commands to be sent to engine are maintained at this layer. This layer then sends these commands to engine which does all the calcualtion and most of the error and state handling.
+The Engine is written entirely in cpp with modern and legacy C++ code mixed with Windows-specific tools. Modifying the bits here and there and making it work with CMakeTools was a challenge initially. However, after adding my thin cpp View layer to interact with the core engine, I compiled it to WebAssembly using [Emscripten](https://emscripten.org/) to make it interact with the browser environment.
 
-UI is very responsive and fluent and loads super fast even on slower connections and low-end mobile devices. Once loaded for first time, sebsequent loads are even faster thanks to caching of of files like wasm assets. 
-
-App now can be installed like native app and is available offline, thanks to @NWylynko. On mobile devices use "Add to homescreen" and on desktop use plus icon in adress bar to install (new link).
+# [UI](./server)
 
 ![responsive example](./engine/docs/Images/calc-resposive.gif)
 
+UI layer was written in plain HTML, CSS, and vanilla Javascript to make it run fast and have a small footprint. Keyboard and Button clicks are captured and mapped to the engine commands. The engine does all the calculations and most of the error and state handling and sends the results back to the UI.
+
 # Current development
-As of now only Standard mode is available in this build 😜(#reduces to more of a POC 😊). But i am working on Scientific Mode which will be pushed in few days 🤗. Offline mode and Native app is also soon. Further development is subjected to interests and contributions of you guys (whoever reads this or just for myself 🥴😭)
+
+Only the _Standard_ mode of the calculator is available in this build as it is supposed to be just a POC. This project is NOT under active development. Contributions are however welcomed.
 
 # Features working as of now
-* [infinite precision](https://en.wikipedia.org/wiki/Arbitrary-precision_arithmetic) (#as it is engine feature).
-* Whole Standard Mode (#i know this isn't much, so using 'whole' to exaggerate) to meet basic calculator requirements.
-* History panel, with NO copy paste as of now (#on both web and phones 🤔).
-* Memory list panel, WITH individual memory item change (MC, M+, M- on each list item, hover or tap list to show these buttons)
+* All basic operations.
+* [Infinite precision](https://en.wikipedia.org/wiki/Arbitrary-precision_arithmetic).
+* History panel.
+* Memory panel, with `MC`, `M+`, and `M-` functions. Hover or tap the list items to reveal these buttons.
 
 ![memory-screenshot](./engine/docs/Images/calc-memory.gif)
 
-# Contributing
-There ain't even any tests, so make it or break it, i just need your contri (and again, if i am only one reading, contri on me only 😣)
-
 # Build 🤷‍♂️
-You'll need Emscripten to build. 
-1. [Download and install](https://emscripten.org/docs/getting_started/downloads.html#sdk-download-and-install) emscripten.
 
-Then you may have emscripten installed on some path say /path/to/emscripten (for example my path to emcc looks like this `/home/muzam/bin/emsdk/upstream/emscripten/emcc` )
+You'll need _Emscripten_ to build. 
 
-2. Then cd to engine/ (or copy engine/ to different location to play around) and enter following in terminal
+1. Download and install [Emscripten](https://emscripten.org/docs/getting_started/downloads.html#sdk-download-and-install).
 
-    `</path/to/emscripten>/emcmake cmake .`
+2. cd to `engine/` and run:
 
-    `</path/to/emscripten>/emmake make`
+```bash
+%/path/to/emscripten%/emcmake cmake .
+%/path/to/emscripten%/emmake make
+%/path/to/emscripten%/emcc -02 libEngine.a CalcManager/libCalcManager.a CalcModel/libCalcModel.a  -o engine.js
+```
 
-    `</path/to/emscripten>/emcc -02 libEngine.a CalcManager/libCalcManager.a CalcModel/libCalcModel.a  -o engine.js`
+The first two lines generate _Cmake_ files and _library.a_ files respectively in their respective folders.
 
-First two lines genrates cmake files and lib.a files respectively in their respective folders.
-All this behavior is controlled in respective CmakeFiles.txt
+See [CMakeLists.txt](./engine/CMakeLists.txt).
 
-Third one generates engine.js and engine.wasm in project root (-o flag), These files can be copied directly and pasted in public/js of server (which is not automated yet 😬)
+The third one generates the `engine.js` and `engine.wasm` which are used by the [server](./server).
 
+# More
 
-# Reporting Issues
-if you are not using this on daily basis, dont report anything, contribute instaed 😪.
-
-
-
-And ...  nothing i am just ........  🤐.
+Now go get a life!
