@@ -6,7 +6,7 @@ This project exists to test the scope of porting Desktop utilities, written in n
 
 Try it [here](https://muzam1l.github.io/mcalculator)
 
-![screenshot](./engine/docs/Images/calc-screenshot.png)
+<img alt="demo" src="./engine/docs/Images/calc-screenshot.png" />
 
 # [Engine](./engine)
 
